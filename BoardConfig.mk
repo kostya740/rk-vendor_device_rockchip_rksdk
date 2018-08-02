@@ -388,3 +388,29 @@ BOARD_USB_ALLOW_DEFAULT_MTP ?= false
 
 HIGH_RELIABLE_RECOVERY_OTA := false
 BOARD_USES_FULL_RECOVERY_IMAGE := false
+
+BOARD_USES_AB_IMAGE := false
+
+ifeq ($(strip $(BOARD_USES_AB_IMAGE)), true)
+	AB_OTA_UPDATER := true
+	TARGET_NO_RECOVERY := true
+	BOARD_USES_RECOVERY_AS_BOOT := true
+	BOARD_BUILD_SYSTEM_ROOT_IMAGE := true
+	USE_AB_PARAMETER := $(shell test -f $(TARGET_DEVICE_DIR)/parameter_ab.txt && echo true)
+	ifeq ($(strip $(USE_AB_PARAMETER)), true)
+		BOARD_SYSTEMIMAGE_PARTITION_SIZE := $(shell python device/rockchip/common/get_partition_size.py $(TARGET_DEVICE_DIR)/parameter_ab.txt system_a)
+	  BOARD_OEMIMAGE_PARTITION_SIZE := $(shell python device/rockchip/common/get_partition_size.py $(TARGET_DEVICE_DIR)/parameter_ab.txt oem_a)
+	  BOARD_VENDORIMAGE_PARTITION_SIZE := $(shell python device/rockchip/common/get_partition_size.py $(TARGET_DEVICE_DIR)/parameter_ab.txt vendor_a)
+	  BOARD_CACHEIMAGE_PARTITION_SIZE := $(shell python device/rockchip/common/get_partition_size.py $(TARGET_DEVICE_DIR)/parameter_ab.txt cache)
+	  BOARD_BOOTIMAGE_PARTITION_SIZE := $(shell python device/rockchip/common/get_partition_size.py $(TARGET_DEVICE_DIR)/parameter_ab.txt boot_a)
+	else
+	  BOARD_SYSTEMIMAGE_PARTITION_SIZE := 1610612736
+	  BOARD_CACHEIMAGE_PARTITION_SIZE := 402653184
+	  BOARD_OEMIMAGE_PARTITION_SIZE := 134217728
+	  BOARD_VENDORIMAGE_PARTITION_SIZE := 402653184
+	  BOARD_BOOTIMAGE_PARTITION_SIZE := 67108864
+	endif
+	# Sepolicy
+	BOARD_SEPOLICY_DIRS := \
+	    device/rockchip/common/sepolicy_ab
+endif

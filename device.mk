@@ -168,8 +168,13 @@ PRODUCT_COPY_FILES += \
     frameworks/av/services/audiopolicy/config/r_submix_audio_policy_configuration.xml:$(TARGET_COPY_OUT_VENDOR)/etc/r_submix_audio_policy_configuration.xml \
     frameworks/av/services/audiopolicy/config/usb_audio_policy_configuration.xml:$(TARGET_COPY_OUT_VENDOR)/etc/usb_audio_policy_configuration.xml
 
+ifeq ($(strip $(BOARD_USES_AB_IMAGE)), true)
+PRODUCT_COPY_FILES += \
+	$(TARGET_DEVICE_DIR)/fstab.rk30board_AB:root/fstab.rk30board
+else
 PRODUCT_COPY_FILES += \
 	$(TARGET_DEVICE_DIR)/fstab.rk30board:root/fstab.rk30board
+endif
 
 # For audio-recoard 
 PRODUCT_PACKAGES += \
@@ -900,4 +905,51 @@ endif
 ifeq ($(strip $(BUILD_WITH_GOOGLE_GMS_EXPRESS)),true)
 PRODUCT_COPY_FILES += \
      vendor/rockchip/common/gms-express.xml:system/etc/sysconfig/gms-express.xml
+endif
+
+ifeq ($(strip $(BOARD_USES_AB_IMAGE)), true)
+PRODUCT_PACKAGES += \
+    update_engine \
+    update_verifier
+
+PRODUCT_STATIC_BOOT_CONTROL_HAL := \
+    bootctrl.rk30board	\
+    libavb_user	\
+    libfs_mgr
+
+PRODUCT_PACKAGES += \
+    update_engine_sideload
+
+PRODUCT_PACKAGES += \
+    update_engine_client
+
+AB_OTA_PARTITIONS += \
+    boot \
+    system	\
+    bootloader	\
+    tos	\
+    vendor	\
+    oem
+
+PRODUCT_PACKAGES += \
+    android.hardware.boot@1.0-impl \
+    android.hardware.boot@1.0-service
+
+PRODUCT_PACKAGES += \
+  libavb_user	\
+  bootctrl.rk30board
+
+PRODUCT_PACKAGES_DEBUG += \
+    bootctl
+
+# A/B OTA dexopt package
+PRODUCT_PACKAGES += otapreopt_script
+
+# A/B OTA dexopt update_engine hookup
+AB_OTA_POSTINSTALL_CONFIG += \
+    RUN_POSTINSTALL_system=true \
+    POSTINSTALL_PATH_system=system/bin/otapreopt_script \
+    FILESYSTEM_TYPE_system=ext4 \
+    POSTINSTALL_OPTIONAL_system=true
+
 endif
