@@ -21,6 +21,7 @@
 
 #akmd
 /dev/akm8963_dev     u:object_r:akmd_device:s0
+/dev/akm_dev         u:object_r:akmd_device:s0
 /vendor/bin/akmd     u:object_r:akmd_exec:s0
 /data/misc/akmd(/.*)?     u:object_r:akmd_file:s0
 
