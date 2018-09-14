@@ -1,0 +1,2 @@
+# example: FOTA service.
+#fo_sl_enhance                  u:object_r:fo_sl_enhance_service:s0
