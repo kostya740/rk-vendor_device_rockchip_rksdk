@@ -901,6 +901,11 @@ PRODUCT_PROPERTY_OVERRIDES += \
        ro.usb.default_mtp=true
 endif
 
+ifeq ($(strip $(BOARD_SHOW_HDMI_SETTING)), true)
+PRODUCT_PROPERTY_OVERRIDES += \
+       ro.rk.hdmisetting=true
+endif
+
 #GOOGLE EXPRESS PLUS CONFIGURATION
 ifeq ($(strip $(BUILD_WITH_GOOGLE_GMS_EXPRESS)),true)
 PRODUCT_COPY_FILES += \
