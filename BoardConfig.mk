@@ -182,7 +182,7 @@ BOARD_SEPOLICY_DIRS ?= \
     device/rockchip/common/sepolicy 
 
 BOARD_PLAT_PUBLIC_SEPOLICY_DIR := device/rockchip/common/plat_sepolicy/public
-BOARD_PLAT_PRIVATE_SEPOLICY_DIR := device/rockchip/common/plat_sepolicy/private
+BOARD_PLAT_PRIVATE_SEPOLICY_DIR := device/rockchip/$(TARGET_BOARD_PLATFORM)/sepolicy
 
 # Recovery
 TARGET_NO_RECOVERY ?= false
