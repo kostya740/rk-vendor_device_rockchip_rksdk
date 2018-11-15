@@ -24,6 +24,7 @@ allow untrusted_app system_data_file:file r_file_perms;
 allow untrusted_app sysfs_lut:file { getattr setattr open write };
 allow untrusted_app sysfs_zram:file { getattr open read };
 allow untrusted_app vendor_file:file { read getattr open execute };
+allow untrusted_app oemfs:file {execmod};
 
 allow untrusted_app userdata_block_device:blk_file getattr;
 allow untrusted_app block_device:dir search;
