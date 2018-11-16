@@ -264,6 +264,15 @@ PRODUCT_PACKAGES += \
 
 $(call inherit-product-if-exists, hardware/rockchip/camera/Config/rk32xx_camera.mk)
 $(call inherit-product-if-exists, hardware/rockchip/camera/Config/user.mk)
+
+#Camera Hal3
+ifeq (1,$(strip $(shell expr $(BOARD_DEFAULT_CAMERA_HAL_VERSION) \>= 3.0)))
+$(call inherit-product-if-exists, hardware/rockchip/camera_v3/etc/camera_etc.mk)
+PRODUCT_PACKAGES += \
+	    librkisp_ae \
+	    librkisp_awb \
+	    librkisp_af
+endif
 endif
 
 # Camera Autofocus
