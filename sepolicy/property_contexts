@@ -9,3 +9,5 @@ pppoe.                  u:object_r:dhcp_prop:s0
 persist.ppp             u:object_r:dhcp_prop:s0
 ro.secureboot           u:object_r:secureboot_prop:s0
 security.tee_supplicant u:object_r:tee_supplicant_prop:s0
+persist.vendor.camera.  u:object_r:system_prop:s0
+vendor.cam.             u:object_r:system_prop:s0

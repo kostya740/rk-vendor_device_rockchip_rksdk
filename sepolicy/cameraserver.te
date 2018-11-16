@@ -12,6 +12,7 @@ allow cameraserver system_file:dir { read open };
 allow cameraserver system_server:unix_stream_socket { read write };
 allow cameraserver rga_device:chr_file { read write open ioctl };
 allow cameraserver rootfs:lnk_file getattr;
+allow cameraserver mediacodec:binder { call };
 
 allow cameraserver hal_allocator:fd use;
 
