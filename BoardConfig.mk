@@ -227,6 +227,9 @@ include device/rockchip/common/wifi_bt_common.mk
 #Camera flash
 BOARD_HAVE_FLASH ?= true
 
+#CameraHal default version
+BOARD_DEFAULT_CAMERA_HAL_VERSION ?=1.0
+
 #HDMI support
 BOARD_SUPPORT_HDMI ?= true
 
