@@ -42,8 +42,6 @@ echo system filesysystem is $FSTYPE
 
 BOARD_CONFIG=device/rockchip/common/device.mk
 
-PARAMETER=${TARGET_DEVICE_DIR}/parameter.txt
-
 KERNEL_SRC_PATH=`grep TARGET_PREBUILT_KERNEL ${BOARD_CONFIG} |grep "^\s*TARGET_PREBUILT_KERNEL *:= *[\w]*\s" |awk  '{print $3}'`
 
 [ $(id -u) -eq 0 ] || FAKEROOT=fakeroot
@@ -77,6 +75,7 @@ then
 	mkbootfs $OUT/root | minigzip > $OUT/ramdisk.img && \
         truncate -s "%4" $OUT/ramdisk.img && \
         mkbootimg --kernel $OUT/kernel --ramdisk $OUT/ramdisk.img --second kernel/resource.img --os_version $PLATFORM_VERSION --os_patch_level $PLATFORM_SECURITY_PATCH --cmdline buildvariant=$TARGET_BUILD_VARIANT --output $OUT/boot.img && \
+	cp -a $OUT/ramdisk.img $IMAGE_PATH/
 	cp -a $OUT/boot.img $IMAGE_PATH/
 	echo "done."
 else
@@ -108,8 +107,6 @@ else
 fi
 	echo -n "create misc.img.... "
 	cp -a rkst/Image/misc.img $IMAGE_PATH/misc.img
-	cp -a rkst/Image/pcba_small_misc.img $IMAGE_PATH/pcba_small_misc.img
-	cp -a rkst/Image/pcba_whole_misc.img $IMAGE_PATH/pcba_whole_misc.img
 	echo "done."
 
 if [ -d $OUT/system ]; then
@@ -241,43 +238,16 @@ else
 	fi
 fi
 
-if [ -f $KERNEL_PATH/resource.img ]
+if [ -f $KERNEL_PATH/boot_linux.img ]
 then
-        echo -n "create resource.img..."
-        cp -a $KERNEL_PATH/resource.img $IMAGE_PATH/resource.img
+        echo -n "create boot_linux.img..."
+        cp -a $KERNEL_PATH/boot_linux.img $IMAGE_PATH/boot_linux.img
         echo "done."
 else
-        echo "$KERNEL_PATH/resource.img not fount!"
+        echo "$KERNEL_PATH/boot_linux.img not fount!"
 fi
 
-if [ -f $KERNEL_PATH/kernel.img ]
-then
-        echo -n "create kernel.img..."
-        cp -a $KERNEL_PATH/kernel.img $IMAGE_PATH/kernel.img
-        echo "done."
-else
-        echo "$KERNEL_PATH/kernel.img not fount!"
-fi
-
-if [ -f $PARAMETER ]
-then
-				if [ "$HIGH_RELIABLE_RECOVERY_OTA" = "true" ]; then
-	        echo -n "create parameter...HIGH_RELIABLE_RECOVERY_OTA is ture. "
-	        echo -n "create parameter from hrr..."
-	        if [ -f $PARAMETER ]; then
-						cp -a ${TARGET_DEVICE_DIR}/parameter_hrr.txt $IMAGE_PATH/parameter.txt
-						echo "done."
-	        else
-						echo "${TARGET_DEVICE_DIR}/parameter_hrr.txt not fount! Please make it from ${TARGET_DEVICE_DIR} first!"
-	        fi
-	      else
-					echo -n "create parameter..."
-	        cp -a $PARAMETER $IMAGE_PATH/parameter.txt
-	        echo "done."
-	      fi
-else
-        echo "$PARAMETER not fount!"
-fi
+cp ${TARGET_DEVICE_DIR}/parameter-* $IMAGE_PATH/
 
 if [ "$TARGET_BASE_PARAMETER_IMAGE"x != ""x ]
 then
