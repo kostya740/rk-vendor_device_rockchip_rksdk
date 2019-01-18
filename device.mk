@@ -928,6 +928,11 @@ PRODUCT_PROPERTY_OVERRIDES += \
        ro.rk.hdmisetting=true
 endif
 
+ifeq ($(strip $(BOARD_HOST_UNHIDE_CHARGE_NOTIFY)), true)
+PRODUCT_PROPERTY_OVERRIDES += \
+       ro.rk.host_unhide_charge_notify=true
+endif
+
 #GOOGLE EXPRESS PLUS CONFIGURATION
 ifeq ($(strip $(BUILD_WITH_GOOGLE_GMS_EXPRESS)),true)
 PRODUCT_COPY_FILES += \
