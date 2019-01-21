@@ -266,6 +266,7 @@ else
 fi
 
 cp ${TARGET_DEVICE_DIR}/parameter-* $IMAGE_PATH/
+cp ${TARGET_DEVICE_DIR}/parameter-android.txt $IMAGE_PATH/parameter.txt
 
 if [ "$TARGET_BASE_PARAMETER_IMAGE"x != ""x ]
 then
