@@ -247,6 +247,24 @@ else
         echo "$KERNEL_PATH/boot_linux.img not fount!"
 fi
 
+if [ -f $KERNEL_PATH/resource.img ]
+then
+        echo -n "create resource.img..."
+        cp -a $KERNEL_PATH/resource.img $IMAGE_PATH/resource.img
+        echo "done."
+else
+        echo "$KERNEL_PATH/resource.img not fount!"
+fi
+
+if [ -f $KERNEL_PATH/kernel.img ]
+then
+        echo -n "create kernel.img..."
+        cp -a $KERNEL_PATH/kernel.img $IMAGE_PATH/kernel.img
+        echo "done."
+else
+        echo "$KERNEL_PATH/kernel.img not fount!"
+fi
+
 cp ${TARGET_DEVICE_DIR}/parameter-* $IMAGE_PATH/
 
 if [ "$TARGET_BASE_PARAMETER_IMAGE"x != ""x ]
