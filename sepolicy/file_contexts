@@ -129,3 +129,6 @@
 
 #for hid audio
 /dev/hidraw0                u:object_r:hidraw_device:s0
+
+#for vendor custom boot
+/vendor/bin/vendor_boot u:object_r:vendor_boot_exec:s0

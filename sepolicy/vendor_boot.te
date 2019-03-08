@@ -1,0 +1,6 @@
+type vendor_boot, domain, mlstrustedsubject;
+type vendor_boot_exec, exec_type, vendor_file_type, file_type;
+permissive vendor_boot;
+
+init_daemon_domain(vendor_boot)
+

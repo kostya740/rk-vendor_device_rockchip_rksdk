@@ -340,3 +340,9 @@ service iso_operate /vendor/bin/iso
 service rk_store_keybox /vendor/bin/rk_store_keybox
     class main
     oneshot		
+
+service vendor_boot /vendor/bin/vendor_boot
+    class main
+    oneshot
+    user root
+    group root
