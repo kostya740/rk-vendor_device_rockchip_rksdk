@@ -187,7 +187,9 @@ PRODUCT_COPY_FILES += \
 	$(TARGET_DEVICE_DIR)/fstab.rk30board_AB:$(TARGET_COPY_OUT_VENDOR)/etc/fstab.rk30board
 else
 PRODUCT_COPY_FILES += \
-	$(TARGET_DEVICE_DIR)/fstab.rk30board:$(TARGET_COPY_OUT_VENDOR)/etc/fstab.rk30board
+    $(TARGET_DEVICE_DIR)/fstab.rk30board.emmc:$(TARGET_COPY_OUT_VENDOR)/etc/fstab.rk30board.emmc \
+    $(TARGET_DEVICE_DIR)/fstab.rk30board.nvme:$(TARGET_COPY_OUT_VENDOR)/etc/fstab.rk30board.nvme \
+    $(TARGET_DEVICE_DIR)/fstab.rk30board.sd:$(TARGET_COPY_OUT_VENDOR)/etc/fstab.rk30board.sd
 endif
 
 # For audio-recoard 
