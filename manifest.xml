@@ -1,23 +1,5 @@
 <manifest version="1.0" type="device" target-level="3">
     <hal format="hidl">
-    <transport>hwbinder</transport>
-    <name>rockchip.hardware.outputmanager</name>
-        <version>1.0</version>
-        <interface>
-            <name>IRkOutputManager</name>
-            <instance>default</instance>
-        </interface>
-    </hal>
-    <hal format="hidl">
-    <transport>hwbinder</transport>
-    <name>android.hardware.tv.cec</name>
-        <version>1.0</version>
-        <interface>
-            <name>IHdmiCec</name>
-            <instance>default</instance>
-        </interface>
-    </hal>
-    <hal format="hidl">
         <name>android.hardware.audio</name>
         <transport>hwbinder</transport>
         <version>4.0</version>
