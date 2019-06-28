@@ -791,6 +791,21 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += hw_output.default
 endif
 
+# mid used hdmi
+ifeq ($(strip $(BOARD_SHOW_HDMI_SETTING)), true)
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.rk.hdmisetting=true
+
+PRODUCT_COPY_FILES += \
+      $(LOCAL_PATH)/resolution_white.xml:/system/usr/share/resolution_white.xml
+
+PRODUCT_PACKAGES += \
+    rockchip.hardware.outputmanager@1.0-impl \
+    rockchip.hardware.outputmanager@1.0-service
+
+PRODUCT_PACKAGES += hw_output.default
+endif
+
 PRODUCT_PACKAGES += \
 	abc
 
@@ -999,13 +1014,15 @@ PRODUCT_PACKAGES += \
 AB_OTA_PARTITIONS += \
     boot \
     system	\
-    bootloader	\
-    tos	\
+    uboot	\
+    trust	\
     vendor	\
     oem	\
-    vbmeta \
     dtbo
-
+ifeq ($(strip $(BOARD_AVB_ENABLE)),true)
+AB_OTA_PARTITIONS += \
+    vbmeta
+endif
 # Boot control HAL
 PRODUCT_PACKAGES += \
     android.hardware.boot@1.0-impl \
