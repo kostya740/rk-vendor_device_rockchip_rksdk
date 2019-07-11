@@ -34,7 +34,7 @@ on init
     symlink /sdcard /mnt/sdcard
 
 on fs
-    mount_all /vendor/etc/fstab.${ro.hardware}.${ro.rkboot.mode}
+    mount_all /vendor/etc/fstab.${ro.hardware}.${ro.vendor.rk.bootmode}
 
 on post-fs
     # Swap in only 1 page at a time
