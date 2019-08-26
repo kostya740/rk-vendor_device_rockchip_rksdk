@@ -164,7 +164,6 @@ endif
 
 ifneq ($(filter atv box, $(strip $(TARGET_BOARD_PLATFORM_PRODUCT))), )
     PRODUCT_COPY_FILES += \
-      $(LOCAL_PATH)/resolution_white.xml:/system/usr/share/resolution_white.xml \
       $(LOCAL_PATH)/tv/permissions/privapp-permissions-tv-common.xml:system/etc/permissions/privapp-permissions-tv-common.xml
 endif
 
@@ -796,8 +795,8 @@ ifeq ($(strip $(BOARD_SHOW_HDMI_SETTING)), true)
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.rk.hdmisetting=true
 
-PRODUCT_COPY_FILES += \
-      $(LOCAL_PATH)/resolution_white.xml:/system/usr/share/resolution_white.xml
+# PRODUCT_COPY_FILES += \
+#      $(LOCAL_PATH)/resolution_white.xml:/system/usr/share/resolution_white.xml
 
 PRODUCT_PACKAGES += \
     rockchip.hardware.outputmanager@1.0-impl \
