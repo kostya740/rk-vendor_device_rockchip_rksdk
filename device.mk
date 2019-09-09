@@ -111,6 +111,7 @@ PRODUCT_COPY_FILES += \
     device/rockchip/common/init.$(TARGET_BOARD_HARDWARE).rc:root/init.$(TARGET_BOARD_HARDWARE).rc \
     device/rockchip/common/init.$(TARGET_BOARD_HARDWARE).usb.rc:root/init.$(TARGET_BOARD_HARDWARE).usb.rc \
     $(call add-to-product-copy-files-if-exists,device/rockchip/common/init.$(TARGET_BOARD_HARDWARE).bootmode.emmc.rc:root/init.$(TARGET_BOARD_HARDWARE).bootmode.emmc.rc) \
+    $(call add-to-product-copy-files-if-exists,device/rockchip/common/init.$(TARGET_BOARD_HARDWARE).bootmode.sd.rc:root/init.$(TARGET_BOARD_HARDWARE).bootmode.sd.rc) \
     $(call add-to-product-copy-files-if-exists,device/rockchip/common/init.$(TARGET_BOARD_HARDWARE).bootmode.unknown.rc:root/init.$(TARGET_BOARD_HARDWARE).bootmode.unknown.rc) \
     $(call add-to-product-copy-files-if-exists,device/rockchip/common/init.$(TARGET_BOARD_HARDWARE).bootmode.nvme.rc:root/init.$(TARGET_BOARD_HARDWARE).bootmode.nvme.rc) \
     device/rockchip/common/ueventd.rockchip.rc:root/ueventd.$(TARGET_BOARD_HARDWARE).rc \
@@ -173,7 +174,9 @@ PRODUCT_COPY_FILES += \
 	$(TARGET_DEVICE_DIR)/fstab.rk30board_AB:root/fstab.rk30board
 else
 PRODUCT_COPY_FILES += \
-	$(TARGET_DEVICE_DIR)/fstab.rk30board:root/fstab.rk30board
+	$(TARGET_DEVICE_DIR)/fstab.rk30board.emmc:root/fstab.rk30board.emmc \
+    $(TARGET_DEVICE_DIR)/fstab.rk30board.sd:root/fstab.rk30board.sd \
+    $(TARGET_DEVICE_DIR)/fstab.rk30board.nvme:root/fstab.rk30board.nvme
 endif
 
 # For audio-recoard 

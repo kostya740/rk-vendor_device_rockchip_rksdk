@@ -1,0 +1,3 @@
+on fs
+    write /sys/block/mmcblk1/bdi/read_ahead_kb 2048
+    mount_all fstab.rk30board.sd
