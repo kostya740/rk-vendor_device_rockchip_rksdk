@@ -286,7 +286,7 @@ BUILD_WITH_GOOGLE_FRP ?= false
 BUILD_WITH_GO_OPT ?= false
 
 # define BUILD_NUMBER
-BUILD_NUMBER := $(shell $(DATE) +%H%M%S)
+# BUILD_NUMBER := $(shell $(DATE) +%H%M%S)
 
 # face lock
 BUILD_WITH_FACELOCK ?= false
