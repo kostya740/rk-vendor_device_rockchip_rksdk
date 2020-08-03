@@ -30,6 +30,22 @@
 		<vscan>0</vscan>
 		<vrefresh>60</vrefresh>
 		<flags>5</flags>
+		<vic>3</vic>
+	</resolution>
+	<resolution> <!-- 1280x800P60 -->
+		<clock>83500</clock> <!-- Pxl Clock -->
+		<hdisplay>1280</hdisplay> <!-- H Active Pxl -->
+		<hsync_start>1352</hsync_start> <!-- 1280 (H Active Pxl) + 72 (H Sync Offset) -->
+		<hsync_end>1480</hsync_end> <!-- 1280 (H Active Pxl) + 72 (H Sync Offset) + 128 (H Sync Width) -->
+		<htotal>1680</htotal> <!-- 1280 (H Active Pxl) + 400 (H Blank) -->
+		<hskew>0</hskew>
+		<vdisplay>800</vdisplay> <!-- V Active Pxl -->
+		<vsync_start>803</vsync_start> <!-- 800 (V Active Pxl) + 3 (V Sync Offset) -->
+		<vsync_end>809</vsync_end> <!-- 800 (V Active Pxl) + 3 (V Sync Offset) + 6 (V Sync Width) -->
+		<vtotal>831</vtotal> <!-- 800 (V Active Pxl) + 31 (V Blank) -->
+		<vscan>0</vscan>
+		<vrefresh>60</vrefresh> <!-- Frequency -->
+		<flags>5</flags>
 		<vic>4</vic>
 	</resolution>
 	<resolution> <!-- 1920x1080I60 -->
